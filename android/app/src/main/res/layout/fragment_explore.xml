@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F7F8FC">
+    <TextView android:id="@+id/explore_header" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginStart="20dp" android:layout_marginTop="16dp" android:text="Live rooms" android:textColor="@color/text_dark"
+        android:textSize="27sp" android:textStyle="bold" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView android:id="@+id/explore_subtitle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="5dp" android:text="Join conversations hosted by the FlexMeet community."
+        android:textColor="@color/text_light" android:textSize="14sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/explore_header"/>
+    <ProgressBar android:id="@+id/progress_bar" android:layout_width="32dp" android:layout_height="32dp" android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@id/explore_subtitle"/>
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="0dp" android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@id/explore_subtitle">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+            <TextView android:id="@+id/empty_state" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center"
+                android:padding="32dp" android:text="No live rooms yet. Host a public meeting to start a community event."
+                android:textColor="@color/text_light" android:visibility="visible"/>
+            <LinearLayout android:id="@+id/live_rooms_container" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

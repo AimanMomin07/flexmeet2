@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="description" content="Private, flexible video rooms for teams and communities.">
+  <title>FlexMeet — Meet in your own way</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <main id="home-screen" class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="FlexMeet home"><span class="brand-mark">f</span><span>flexmeet</span></a>
+      <div class="topbar-actions">
+        <span id="connection-status" class="connection-pill"><i></i> Ready when you are</span>
+        <button id="account-open" class="account-button">Sign in</button>
+        <button id="settings-open" class="icon-button" aria-label="Connection settings" title="Connection settings">⚙</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">MAKE ROOM FOR EVERYONE</p>
+        <h1>Good conversations<br><em>start here.</em></h1>
+        <p class="hero-description">One tap to meet. Share a link with anyone, on any device.</p>
+        <div class="hero-actions">
+          <button id="create-room" class="button button-primary"><span aria-hidden="true">＋</span> Start a meeting</button>
+          <button id="join-open" class="button button-quiet">Join with a code <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="art-card art-card-back"><span class="avatar avatar-lilac">J</span><span class="art-wave"></span></div>
+        <div class="art-card art-card-front"><div class="avatar avatar-peach">M</div><div class="art-lines"><b></b><i></i></div><span class="live-dot"></span></div>
+        <div class="art-tag">a little more human <span>✳</span></div>
+      </div>
+    </section>
+
+    <section class="feature-row" aria-label="Meeting features">
+      <article><span class="feature-icon">◉</span><div><b>Host in control</b><small>Open room or host-led stage</small></div></article>
+      <article><span class="feature-icon feature-green">↗</span><div><b>Join from anywhere</b><small>Browser, Android, or iPhone</small></div></article>
+      <article><span class="feature-icon feature-orange">✳</span><div><b>Everyone gets a voice</b><small>Raise a hand to join the stage</small></div></article>
+    </section>
+
+    <section id="join-card" class="join-card" hidden>
+      <div><p class="eyebrow">YOU HAVE AN INVITE?</p><h2>Enter the meeting code</h2><p class="muted">Paste a code or the full invite link.</p></div>
+      <form id="join-form" class="join-form">
+        <label class="sr-only" for="join-code">Meeting code or invite link</label>
+        <input id="join-code" autocomplete="url" placeholder="e.g. FM-8K2W4X or paste a link">
+        <button class="button button-primary" type="submit">Continue <span>→</span></button>
+      </form>
+    </section>
+
+    <section class="bottom-note"><span>✦</span> Thoughtful meetings, wherever life happens <span class="note-right">FlexMeet · Web preview</span></section>
+  </main>
+
+  <main id="meeting-screen" class="meeting-shell" hidden>
+    <header class="meeting-topbar">
+      <a class="brand brand-light" href="/"><span class="brand-mark">f</span><span>flexmeet</span></a>
+      <div class="meeting-title-block"><b id="meeting-title-display">Meeting room</b><span id="meeting-room-code"></span></div>
+      <button id="share-invite" class="button button-outline">↗ <span>Invite</span></button>
+    </header>
+
+    <div class="meeting-layout">
+      <section class="stage-column">
+        <div id="video-grid" class="video-grid">
+          <div id="empty-stage" class="empty-stage"><div class="empty-orb">✳</div><h2>Your room is ready.</h2><p>Invite someone to start the conversation.</p></div>
+        </div>
+        <div class="control-bar">
+          <button id="mic-toggle" class="meeting-control" aria-pressed="true"><span>🎙</span><small>Mic</small></button>
+          <button id="camera-toggle" class="meeting-control" aria-pressed="true"><span>▣</span><small>Camera</small></button>
+          <button id="raise-hand" class="meeting-control"><span>✋</span><small>Raise hand</small></button>
+          <button id="screen-share" class="meeting-control"><span>▧</span><small>Share screen</small></button>
+          <button id="leave-room" class="meeting-control leave-control"><span>☎</span><small>Leave</small></button>
+        </div>
+      </section>
+
+      <aside class="side-panel">
+        <div class="tabbar"><button class="tab active" data-tab="people">People <span id="people-count">1</span></button><button class="tab" data-tab="chat">Chat</button></div>
+        <div id="people-view" class="panel-view">
+          <div id="participant-list" class="participant-list"></div>
+          <button id="admin-mute-all" class="button button-soft admin-only" hidden>Mute everyone</button>
+          <div class="host-settings admin-only" hidden>
+            <p class="eyebrow">ROOM STYLE</p>
+            <label for="room-mode">Who can speak?</label>
+            <select id="room-mode"><option value="OPEN">Everyone can share audio &amp; video</option><option value="HOST_ONLY">Host-led stage · guests listen</option></select>
+            <p class="hint">Give any guest permission to speak or turn on their camera from the people list.</p>
+          </div>
+          <div class="stage-queue">
+            <div class="queue-heading"><span><b>Stage queue</b><small>Take turns, no interruptions</small></span><span class="queue-star">✳</span></div>
+            <div id="hand-queue" class="hand-queue"><span class="muted">No hands raised</span></div>
+          </div>
+        </div>
+        <div id="chat-view" class="panel-view" hidden>
+          <div id="chat-messages" class="chat-messages"></div>
+          <form id="chat-form" class="chat-form"><label class="sr-only" for="chat-input">Message</label><input id="chat-input" placeholder="Send a message…"><button type="submit" aria-label="Send message">↑</button></form>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <dialog id="create-dialog" class="dialog-card">
+    <form id="create-form" method="dialog">
+      <button class="dialog-close" value="cancel" aria-label="Close">×</button>
+      <p class="eyebrow">START SOMETHING GOOD</p><h2>Make a room</h2><p class="muted">Choose how your room works. You can change it anytime.</p>
+      <label for="room-name">Room name</label><input id="room-name" maxlength="80" placeholder="Team catch-up" required>
+      <label for="room-start-mode">Starting format</label><select id="room-start-mode"><option value="OPEN">Open conversation · everyone can share</option><option value="HOST_ONLY">Host-led stage · guests join muted</option></select>
+      <button id="create-submit" class="button button-primary dialog-submit" value="create">Create room <span>→</span></button>
+    </form>
+  </dialog>
+
+  <dialog id="auth-dialog" class="dialog-card">
+    <form id="auth-form" method="dialog">
+      <button class="dialog-close" value="cancel" aria-label="Close">×</button>
+      <p class="eyebrow">YOUR FLEXMEET ACCOUNT</p><h2 id="auth-title">Welcome back</h2><p class="muted">Sign in to host a meeting and manage your rooms.</p>
+      <label for="auth-email">Email</label><input id="auth-email" type="email" autocomplete="email" required>
+      <label for="auth-password">Password</label><input id="auth-password" type="password" autocomplete="current-password" required>
+      <label id="auth-name-label" for="auth-name" hidden>Your name</label><input id="auth-name" maxlength="80" autocomplete="name" placeholder="Your name" hidden>
+      <p id="auth-message" class="auth-message" aria-live="polite"></p>
+      <button id="auth-submit" class="button button-primary dialog-submit" value="submit">Sign in</button>
+      <button id="auth-toggle" class="button button-quiet" type="button">Create an account</button>
+    </form>
+  </dialog>
+
+  <dialog id="settings-dialog" class="dialog-card">
+    <form id="settings-form" method="dialog">
+      <button class="dialog-close" value="cancel" aria-label="Close">×</button>
+      <p class="eyebrow">CONNECTION</p><h2>Connect your services</h2><p class="muted">The website and meeting API are hosted separately. Set the API address after deployment.</p>
+      <label for="api-address">FlexMeet API URL</label><input id="api-address" type="url" placeholder="https://api.yourdomain.com/api">
+      <p class="hint">Keep LiveKit API keys on the server. Never paste them here.</p>
+      <button class="button button-primary dialog-submit" value="save">Save address</button>
+    </form>
+  </dialog>
+
+  <script type="module" src="/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>

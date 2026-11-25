@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A1C1E">
+
+    <!-- Video Grid Container -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/video_grid_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_controls"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_video_participant" />
+
+    <!-- Waiting Screen (Webex inspired) -->
+    <LinearLayout
+        android:id="@+id/waiting_screen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#1A1C1E"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_controls"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#2D2F31"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="0dp">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:padding="20dp"
+                android:src="@android:drawable/ic_menu_today"
+                app:tint="@color/white" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Waiting for others to join..."
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/participant_count_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="You are the only one here"
+            android:textColor="#B0B3B8"
+            android:textSize="14sp" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:indeterminate="true"
+            app:indicatorColor="@color/primary_blue" />
+    </LinearLayout>
+
+    <!-- Recording Timer Badge -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/recording_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#CCEA4335"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp">
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:background="@drawable/rounded_button_blue"
+                android:backgroundTint="@color/white" />
+
+            <TextView
+                android:id="@+id/recording_timer_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="00:00"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Local Preview (Moveable Card) -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/local_preview_card"
+        android:layout_width="110dp"
+        android:layout_height="160dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_controls"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <org.webrtc.SurfaceViewRenderer
+                android:id="@+id/local_video_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <View
+                android:id="@+id/drag_handle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground" />
+
+            <ImageButton
+                android:id="@+id/btn_flip_camera"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="6dp"
+                android:background="@drawable/rounded_button_blue"
+                android:backgroundTint="#80000000"
+                android:padding="4dp"
+                android:scaleType="centerInside"
+                android:src="@android:drawable/ic_menu_rotate"
+                app:tint="@color/white" />
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Overlay Fragments (Chat/Notes) -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_controls"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Bottom Control Bar -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottom_controls"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        app:cardBackgroundColor="#202124"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_mic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    app:backgroundTint="#3C4043"
+                    app:fabSize="mini"
+                    app:srcCompat="@android:drawable/ic_btn_speak_now"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    app:backgroundTint="#3C4043"
+                    app:fabSize="mini"
+                    app:srcCompat="@android:drawable/ic_menu_camera"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_share_screen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    app:backgroundTint="#3C4043"
+                    app:fabSize="mini"
+                    app:srcCompat="@android:drawable/ic_menu_share"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_record"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    app:backgroundTint="#3C4043"
+                    app:fabSize="mini"
+                    app:srcCompat="@android:drawable/presence_video_busy"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    app:backgroundTint="#3C4043"
+                    app:fabSize="mini"
+                    app:srcCompat="@android:drawable/stat_notify_chat"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_notes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    app:backgroundTint="#3C4043"
+                    app:fabSize="mini"
+                    app:srcCompat="@android:drawable/ic_menu_edit"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btn_end_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    app:backgroundTint="#EA4335"
+                    app:fabSize="normal"
+                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+                    app:tint="@color/white" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

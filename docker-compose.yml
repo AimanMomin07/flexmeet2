@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  flexmeet-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: flexmeet:latest
+    container_name: flexmeet-server
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - JWT_SECRET=your-secure-secret-key-change-this-in-production
+      - FIREBASE_DATABASE_URL=https://your-project.firebaseio.com
+    volumes:
+      - ./serviceAccountKey.json:/app/serviceAccountKey.json:ro
+      - flexmeet-logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - flexmeet-network
+
+  # Optional: Add PostgreSQL for production (replace H2)
+  postgres:
+    image: postgres:15-alpine
+    container_name: flexmeet-db
+    environment:
+      POSTGRES_DB: flexmeet
+      POSTGRES_USER: flexmeet
+      POSTGRES_PASSWORD: changeme
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - flexmeet-network
+    profiles:
+      - prod
+
+volumes:
+  flexmeet-logs:
+  postgres-data:
+
+networks:
+  flexmeet-network:
+    driver: bridge

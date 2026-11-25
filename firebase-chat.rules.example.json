@@ -1,0 +1,46 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || (query.orderByChild === 'email' && query.equalTo != null && query.limitToFirst <= 1))",
+        ".write": "auth != null && auth.uid === $uid"
+      },
+      ".indexOn": ["email"]
+    },
+    "friend_requests": {
+      "$recipientUid": {
+        "$senderUid": {
+          ".read": "auth != null && (auth.uid === $recipientUid || auth.uid === $senderUid)",
+          ".write": "auth != null && (auth.uid === $recipientUid || (auth.uid === $senderUid && !data.exists() && newData.child('requestStatus').val() === 'pending' && newData.child('senderUid').val() === auth.uid))"
+        }
+      }
+    },
+    "contacts": {
+      "$uid": {
+        "$friendUid": {
+          ".read": "auth != null && auth.uid === $uid",
+          ".write": "auth != null && (auth.uid === $uid || (auth.uid === $friendUid && root.child('friend_requests').child(auth.uid).child($uid).child('requestStatus').val() === 'accepted'))"
+        }
+      }
+    },
+    "private_chats": {
+      "$firstUid": {
+        "$secondUid": {
+          "messages": {
+            ".read": "auth != null && (auth.uid === $firstUid || auth.uid === $secondUid) && root.child('contacts').child($firstUid).child($secondUid).exists() && root.child('contacts').child($secondUid).child($firstUid).exists()",
+            ".write": "auth != null && (auth.uid === $firstUid || auth.uid === $secondUid) && root.child('contacts').child($firstUid).child($secondUid).exists() && root.child('contacts').child($secondUid).child($firstUid).exists()",
+            "$messageId": {
+              ".validate": "newData.hasChildren(['senderId', 'text', 'timestamp']) && newData.child('senderId').val() === auth.uid"
+            }
+          }
+        }
+      }
+    },
+    "public_rooms": {
+      ".read": true,
+      "$roomId": {
+        ".write": "auth != null && auth.uid === (newData.exists() ? newData.child('hostUid').val() : data.child('hostUid').val())"
+      }
+    }
+  }
+}

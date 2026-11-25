@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_night_gradient"
+    android:clipToPadding="false"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="22dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="26dp">
+
+        <TextView
+            android:id="@+id/welcome_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Good morning"
+            android:textColor="#1C2941"
+            android:textSize="28sp"
+            android:fontFamily="sans"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Your space to meet, wherever you are."
+            android:textColor="#708096"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_hero_glass"
+            android:orientation="vertical"
+            android:padding="22dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✦  MEET WITHOUT LIMITS"
+                android:textColor="#5368C8"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.11" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:text="Bring everyone\ntogether."
+                android:textColor="#18253D"
+                android:textSize="29sp"
+                android:lineSpacingExtra="1dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Start a room in seconds and share one link with your team."
+                android:textColor="#5E6E86"
+                android:textSize="14sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/start_meeting_btn"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="19dp"
+                android:text="Start a new meeting"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:backgroundTint="#5368D8"
+                app:cornerRadius="18dp"
+                app:icon="@drawable/ic_video_camera"
+                app:iconTint="#FFFFFF" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="Get together"
+            android:textColor="#1D2A42"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/join_meeting_btn"
+                android:layout_width="0dp"
+                android:layout_height="82dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_glass_row"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_icon_orb"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_add_round"
+                    app:tint="#5368D8" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Join a meeting"
+                    android:textColor="#1D2A42"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/schedule_meeting_btn"
+                android:layout_width="0dp"
+                android:layout_height="82dp"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_glass_row"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_icon_orb"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_calendar_modern"
+                    app:tint="#5368D8" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Schedule"
+                    android:textColor="#1D2A42"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Upcoming meetings"
+            android:textColor="#1D2A42"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/meetings_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:nestedScrollingEnabled="false"
+            tools:listitem="@layout/item_meeting" />
+
+        <LinearLayout
+            android:id="@+id/empty_state_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_glass_row"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="28dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:alpha="0.75"
+                android:src="@android:drawable/ic_menu_today"
+                app:tint="#8B9AB0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="No meetings scheduled yet"
+                android:textColor="#708096"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

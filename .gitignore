@@ -1,0 +1,74 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+android/.idea/
+
+# Build & Android
+target/
+build/
+**/build/
+android/.gradle/
+android/app/build/
+android/local.properties
+oracleJdk*/
+jdk*/
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Maven
+.m2/
+dependency-reduced-pom.xml
+
+# Gradle
+.gradle/
+gradle/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Firebase
+serviceAccountKey.json
+serviceAccountKey*.json
+!serviceAccountKey.json.example
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+logs/
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Credentials and secrets
+*.pem
+*.key
+*.crt
+.credentials/
+
+# Temporary files
+*.tmp
+*.temp
+

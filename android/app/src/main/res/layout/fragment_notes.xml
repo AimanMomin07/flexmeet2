@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/notes_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary_blue">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Collaborative Notes"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/export_pdf_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_save"
+            android:padding="16dp"
+            app:tint="@color/white"
+            xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+        <ImageButton
+            android:id="@+id/close_notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:padding="16dp"
+            app:tint="@color/white"
+            xmlns:app="http://schemas.android.com/apk/res-auto" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/notes_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:padding="16dp"
+        android:background="@null"
+        android:hint="Start typing meeting notes here..."
+        android:inputType="textMultiLine"
+        android:textColor="@color/text_dark"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/last_edited_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Last edited just now"
+        android:textColor="@color/text_light"
+        android:textSize="12sp"
+        android:background="#F8F9FA" />
+
+</LinearLayout>

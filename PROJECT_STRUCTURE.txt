@@ -1,0 +1,32 @@
+/**
+ * FlexMeet - Google Meet Clone for Android
+ * 
+ * Project Structure:
+ * app/
+ *  ├── src/
+ *  │   ├── main/
+ *  │   │   ├── AndroidManifest.xml
+ *  │   │   ├── java/com/flexmeet/
+ *  │   │   │   ├── activities/
+ *  │   │   │   ├── fragments/
+ *  │   │   │   ├── models/
+ *  │   │   │   ├── services/
+ *  │   │   │   ├── firebase/
+ *  │   │   │   ├── utils/
+ *  │   │   │   ├── adapters/
+ *  │   │   │   ├── interfaces/
+ *  │   │   │   ├── constants/
+ *  │   │   │   └── FlexMeetApplication.java
+ *  │   │   └── res/
+ *  │   │       ├── layout/
+ *  │   │       ├── drawable/
+ *  │   │       ├── values/
+ *  │   │       ├── menu/
+ *  │   │       └── color/
+ *  │   └── test/
+ *  └── build.gradle
+ * 
+ * build.gradle (Project level)
+ * build.gradle (Module level)
+ * gradle.properties
+ */

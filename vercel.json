@@ -1,0 +1,6 @@
+{
+  "outputDirectory": "src/main/resources/static",
+  "rewrites": [
+    { "source": "/join/:room", "destination": "/index.html" }
+  ]
+}

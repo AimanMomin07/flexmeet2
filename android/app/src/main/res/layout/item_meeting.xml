@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            app:cardBackgroundColor="@color/primary_blue_light"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                app:tint="@color/primary_blue" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/meeting_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Project Discussion"
+                android:textColor="@color/text_dark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/meeting_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Today, 10:30 AM"
+                android:textColor="@color/text_light"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/join_now_btn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Join"
+            android:textAllCaps="false"
+            android:textColor="@color/primary_blue"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/delete_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_delete"
+            app:tint="@color/error_red" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "70682749401",
+    "project_id": "flexmeet-fea69",
+    "storage_bucket": "flexmeet-fea69.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70682749401:android:219593b090a9ca2c7751c8",
+        "android_client_info": {
+          "package_name": "com.flexmeet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB83v5dFZH5ZTmuT4PlpSA-fwFhNb0tmHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

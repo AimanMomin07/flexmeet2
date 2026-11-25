@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F7F8FC" android:paddingTop="10dp">
+    <TextView android:id="@+id/chat_header" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="20dp"
+        android:text="Messages" android:textColor="@color/text_dark" android:textSize="26sp" android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView android:id="@+id/chat_subtitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp" android:text="Private chats with accepted friends" android:textColor="@color/text_light" android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/chat_header"/>
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/chat_list_recycler_view" android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_marginTop="12dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@id/chat_subtitle"/>
+    <LinearLayout android:id="@+id/no_chats_layout" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center"
+        android:orientation="vertical" android:padding="28dp" android:visibility="gone" app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chat_subtitle">
+        <ImageView android:layout_width="64dp" android:layout_height="64dp" android:alpha="0.5" android:src="@android:drawable/stat_notify_chat"/>
+        <TextView android:id="@+id/no_chats_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14dp"
+            android:gravity="center" android:text="Add a friend and accept each other's request to start chatting." android:textColor="@color/text_light"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

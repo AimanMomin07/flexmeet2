@@ -1,0 +1,15 @@
+{
+  "id": "/",
+  "name": "FlexMeet",
+  "short_name": "FlexMeet",
+  "description": "Flexible video rooms for teams and communities.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#f5f7fb",
+  "orientation": "any",
+  "icons": [
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

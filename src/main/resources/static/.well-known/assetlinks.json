@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.flexmeet",
+      "sha256_cert_fingerprints": [
+        "2F:48:63:CD:02:0C:53:90:D8:44:18:0F:46:D4:87:F0:95:57:E1:C8:45:52:09:CF:4D:C3:3A:0B:59:18:AF:A9"
+      ]
+    }
+  }
+]
